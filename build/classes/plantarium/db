@@ -1,0 +1,57 @@
+-- Create the database
+CREATE DATABASE plantarium;
+
+-- Use the database
+USE plantarium;
+
+-- Create the Admin table
+CREATE TABLE Admin (
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (name)
+);
+
+-- Create the Employee table
+CREATE TABLE Employee (
+    name VARCHAR(255) NOT NULL,
+    speciality VARCHAR(255),
+    job VARCHAR(255),
+    PRIMARY KEY (name)
+);
+
+-- Create the PlantInfo table
+CREATE TABLE PlantInfo (
+    name VARCHAR(255) NOT NULL,
+    speciality VARCHAR(255),
+    category VARCHAR(255),
+    cost DECIMAL(10,2),
+    PRIMARY KEY (name)
+);
+
+-- Create the PlantHealth table
+CREATE TABLE PlantHealth (
+    name VARCHAR(255),
+    issue VARCHAR(255),
+    drugs VARCHAR(255)
+);
+
+-- Create the PlantCare table
+CREATE TABLE PlantCare (
+    name VARCHAR(255),
+    water_freq INT,
+    water_qu DECIMAL(10,2),
+    sun_exposition VARCHAR(255),
+    pruning VARCHAR(255)
+);
+
+
+-- Create a new user
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '1234';
+
+-- Grant all privileges on the plantarium database to the new user
+GRANT ALL PRIVILEGES ON plantarium.* TO 'admin'@'localhost';
+
+-- Apply the changes
+FLUSH PRIVILEGES;
+
